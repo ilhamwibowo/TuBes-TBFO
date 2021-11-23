@@ -8,13 +8,15 @@ def convert_to_token(filename):
         res = list()
         for token in tokens:
             if (token.type == 4):
-                for i in range (len(res)):
-                    all_lines.append(res[i])
-                res = list()
-            if (token.type != 4 and token.type != 5 and token.type !=6):
+                if (res != list()):
+                    all_lines.append(res)
+                    res = list()
+            if (token.type != 3 and token.type != 4 and token.type != 5 and token.type !=6 and token.type != 60 and token.type != 61):
                 res.append(token.string)
-            print(token)
+            # print(token)
+        print("\nALL_LINES\n")
         print(all_lines)
+        print('\n')
     return all_lines
 
 
@@ -160,6 +162,6 @@ if __name__ == '__main__':
     inputan = input("Masukkan file input: ")
     #lines = convert_to_token(inputan)
     v, t = read_grammar(grammar)
-    for lines in read_input(inputan):
+    for lines in convert_to_token(inputan):
         ta = cyk_alg(v, t, lines)
         show_result(ta, lines)
