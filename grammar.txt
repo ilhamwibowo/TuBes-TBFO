@@ -1,0 +1,49 @@
+S -> S S | VARIABLE VARIABLE_ASSIGN VARIABLE_VALUE | IF | PRINT | LOOP | DEF | CLASS | IMPORT | FROM | COMMENT 
+
+VARIABLE_ASSIGN -> = | + = | - = | * = | / =
+VARIABLE_VALUE ->  VARIABLE | VAL | VARIABLE_VALUE ARITHMETIC_OPS VARIABLE_VALUE | INPUT | VARIABLE_VALUE , VARIABLE_VALUE | FILE_OPS | LEN | NONE
+VARIABLE -> ALPHABET VARIABLE NUMBER | ALPHABET VARIABLE | ALPHABET | _
+VAL -> NUMBER | ( VARIABLE_VALUE ) | BOOL | STRING
+ARITHMETIC_OPS -> + | - | * | / | % | * * | / /
+
+RELATION -> > | < | = = | ! = | < = | > =
+BOOL -> true | false | BOOL BOOL_OPS BOOL | UNARY_OPS BOOL | VARIABLE_VALUE is VARIABLE_VALUE | VARIABLE_VALUE RELATION VARIABLE_VALUE
+BOOL_OPS -> and | or
+UNARY_OPS -> not
+
+ALPHANUM -> ALPHABET | NUMBER | OTHER | ALPHANUM ALPHANUM
+ALPHABET -> a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z
+ALPHABET -> A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
+OTHER -> ! | # | $ | % | & | ( | ) | * | + | , | - | . | / | : | ; | < | = | > | ? | @ | [ | \ | ] | ^ | _ | ` | { | | | } | ~
+NUMBER -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | NUMBER NUMBER
+STRING -> " ALPHANUM " | ' ALPHANUM ' | ALPHANUM + ALPHANUM
+
+COMMENT -> " " " ALPHANUM " " "
+CONTENT_IN_BRACKET -> ( VARIABLE_VALUE ) | ( ) | ( STRING )
+
+PRINT -> print CONTENT_IN_BRACKET
+TYPE -> int | float | str | double
+INPUT -> input CONTENT_IN_BRACKET | TYPE ( INPUT )
+
+IF -> if CONDITION | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE
+ELIF -> elif CONDITION | ELIF ELIF | ELIF ELSE
+ELSE -> else : S
+CONDITION -> ( BOOL ) : S | BOOL : S
+RETURN -> return BOOL | return VAL
+
+DEF -> def VARIABLE CONTENT_IN_BRACKET : S | DEF RETURN
+RAISE -> raise VARIABLE CONTENT_IN_BRACKET
+BREAK -> break
+PASS -> pass
+NONE -> none
+
+LOOP -> FOR | WHILE
+WHILE -> while CONDITION
+FOR -> for VARIABLE in VARIABLE : S
+CONTINUE -> continue
+
+CLASS -> class VARIABLE : S
+IMPORT -> import VARIABLE as VARIABLE | import VARIABLE
+FROM_CONDITION -> from VARIABLE IMPORT
+FILE_OPS -> with open CONTENT_IN_BRACKET as VARIABLE
+LEN -> len CONTENT_IN_BRACKET
