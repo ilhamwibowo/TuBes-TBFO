@@ -1,49 +1,51 @@
 S -> S S | VARIABLE VARIABLE_ASSIGN VARIABLE_VALUE | IF | PRINT | LOOP | DEF | CLASS | IMPORT | FROM | COMMENT 
 
-VARIABLE_ASSIGN -> = | + = | - = | * = | / =
-VARIABLE_VALUE ->  VARIABLE | VAL | VARIABLE_VALUE ARITHMETIC_OPS VARIABLE_VALUE | INPUT | VARIABLE_VALUE , VARIABLE_VALUE | FILE_OPS | LEN | NONE
-VARIABLE -> ALPHABET VARIABLE NUMBER | ALPHABET VARIABLE | ALPHABET | _
+VARIABLE_ASSIGN -> '=' | '+' '=' | '-' '=' | '*' '=' | '/' '='
+VARIABLE_VALUE ->  VARIABLE | VAL | VARIABLE_VALUE ARITHMETIC_OPS VARIABLE_VALUE | INPUT | FILE_OPS | LEN | NONE
+VARIABLE -> ALPHABET VARIABLE NUMBER | ALPHABET VARIABLE | ALPHABET | '_'
 VAL -> NUMBER | ( VARIABLE_VALUE ) | BOOL | STRING
-ARITHMETIC_OPS -> + | - | * | / | % | * * | / /
+ARITHMETIC_OPS -> '+' | '-' | '*' | '/' | '%' | '*' '*' | '/' '/'
 
-RELATION -> > | < | = = | ! = | < = | > =
-BOOL -> true | false | BOOL BOOL_OPS BOOL | UNARY_OPS BOOL | VARIABLE_VALUE is VARIABLE_VALUE | VARIABLE_VALUE RELATION VARIABLE_VALUE
-BOOL_OPS -> and | or
-UNARY_OPS -> not
+RELATION -> '>' | '<' | '=' '=' | '!' '=' | '<' '=' | '>' '='
+BOOL -> 'T' 'r' 'u' 'e' | 'F' 'a' 'l' 's' 'e' | BOOL BOOL_OPS BOOL | UNARY_OPS BOOL | VARIABLE_VALUE 'i' 's' VARIABLE_VALUE | VARIABLE_VALUE RELATION VARIABLE_VALUE
+BOOL_OPS -> 'a' 'n' 'd' | 'o' 'r'
+UNARY_OPS -> 'n' 'o' 't'
 
 ALPHANUM -> ALPHABET | NUMBER | OTHER | ALPHANUM ALPHANUM
-ALPHABET -> a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z
-ALPHABET -> A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
-OTHER -> ! | # | $ | % | & | ( | ) | * | + | , | - | . | / | : | ; | < | = | > | ? | @ | [ | \ | ] | ^ | _ | ` | { | | | } | ~
-NUMBER -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | NUMBER NUMBER
-STRING -> " ALPHANUM " | ' ALPHANUM ' | ALPHANUM + ALPHANUM
+ALPHABET -> 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'
+ALPHABET -> 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
+OTHER -> '!' | '#' | '$' | '%' | '&' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?' | '@' | '[' | '\' | ']' | '^' | '_' | '`' | '{' | '|' | '}' | '~'
+NUMBER -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER
+STRING -> '"' ALPHANUM '"' | ''' ALPHANUM ''' | ALPHANUM '+' ALPHANUM
 
-COMMENT -> " " " ALPHANUM " " "
-CONTENT_IN_BRACKET -> ( VARIABLE_VALUE ) | ( ) | ( STRING )
+COMMENT -> '"' '"' '"' ALPHANUM '"' '"' '"'
+CONTENT_IN_BRACKET -> '(' VARIABLE_VALUE ')' | '(' ')' | '(' STRING ')'
 
-PRINT -> print CONTENT_IN_BRACKET
-TYPE -> int | float | str | double
-INPUT -> input CONTENT_IN_BRACKET | TYPE ( INPUT )
+PRINT -> 'p' 'r' 'i' 'n' 't' CONTENT_IN_BRACKET
+TYPE -> 'i' 'n' 't' | 'f' 'l' 'o' 'a' 't' | 's' 't' 'r' | 'd' 'o' 'u' 'b' 'l' 'e'
+INPUT -> 'i' 'n' 'p' 'u' 't' CONTENT_IN_BRACKET | TYPE '(' INPUT ')'
 
-IF -> if CONDITION | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE
-ELIF -> elif CONDITION | ELIF ELIF | ELIF ELSE
-ELSE -> else : S
-CONDITION -> ( BOOL ) : S | BOOL : S
-RETURN -> return BOOL | return VAL
+SPACE -> ' ' | SPACE SPACE
 
-DEF -> def VARIABLE CONTENT_IN_BRACKET : S | DEF RETURN
-RAISE -> raise VARIABLE CONTENT_IN_BRACKET
-BREAK -> break
-PASS -> pass
-NONE -> none
+IF -> 'i' 'f' SPACE CONDITION | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE
+ELIF -> 'e' 'l' 'i' 'f' SPACE CONDITION | ELIF ELIF | ELIF ELSE
+ELSE -> 'e' 'l' 's' 'e' ':' 'S'
+CONDITION -> '(' BOOL ')' ':' S | BOOL ':' S
+RETURN -> 'r' 'e' 't' 'u' 'r' 'n' SPACE BOOL | 'r' 'e' 't' 'u' 'r' 'n' SPACE VAL
+
+DEF -> 'd' 'e' 'f' SPACE VARIABLE CONTENT_IN_BRACKET ':' S | DEF RETURN
+RAISE -> 'r' 'a' 'i' 's' 'e' SPACE VARIABLE CONTENT_IN_BRACKET
+BREAK -> 'b' 'r' 'e' 'a' 'k'
+PASS -> 'p' 'a' 's' 's'
+NONE -> 'n' 'o' 'n' 'e'
 
 LOOP -> FOR | WHILE
-WHILE -> while CONDITION
-FOR -> for VARIABLE in VARIABLE : S
-CONTINUE -> continue
+WHILE -> 'w' 'h' 'i' 'l' 'e' SPACE CONDITION
+FOR -> 'f' 'o' 'r' SPACE VARIABLE 'i' 'n' SPACE VARIABLE ':' S
+CONTINUE -> 'c' 'o' 'n' 't' 'i' 'n' 'u' 'e'
 
-CLASS -> class VARIABLE : S
-IMPORT -> import VARIABLE as VARIABLE | import VARIABLE
-FROM_CONDITION -> from VARIABLE IMPORT
-FILE_OPS -> with open CONTENT_IN_BRACKET as VARIABLE
-LEN -> len CONTENT_IN_BRACKET
+CLASS -> 'c' 'l' 'a' 's' 's' SPACE VARIABLE ':' S
+IMPORT -> 'i' 'm' 'p' 'o' 'r' 't' SPACE VARIABLE SPACE 'a' 's' SPACE VARIABLE | 'i' 'm' 'p' 'o' 'r' 't' SPACE VARIABLE
+FROM_CONDITION -> 'f' 'r' 'o' 'm' SPACE VARIABLE SPACE IMPORT
+FILE_OPS -> 'w' 'i' 't' 'h' SPACE 'o' 'p' 'e' 'n' CONTENT_IN_BRACKET 'a' 's' VARIABLE
+LEN -> 'l' 'e' 'n' CONTENT_IN_BRACKET
