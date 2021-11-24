@@ -1,7 +1,7 @@
 import sys
 sys.setrecursionlimit(10000)
 
-
+#insert new start symbol
 def insert_new_start(cfg):
     string = "S0 -> S\n"
     cfg.insert(0,string)
@@ -21,11 +21,18 @@ def parse_prod(prod):
                         x[j] = cnf.split(" ")[0]
                         break
                 if not(found):
-                    cnfs.append('A'+str(i[0])+" -> '"+x[j][1:-1]+"'")
-                    x[j] = 'A'+str(i[0])
-                    it = i[0] + 1
-                    i.pop(0)
-                    i.append(it)
+                    if (x[j][1:-1] == ""):
+                        cnfs.append('A'+str(i[0])+" -> ' "+x[j][1:-1]+"'")
+                        x[j] = 'A'+str(i[0])
+                        it = i[0] + 1
+                        i.pop(0)
+                        i.append(it)
+                    else :
+                        cnfs.append('A'+str(i[0])+" -> '"+x[j][1:-1]+"'")
+                        x[j] = 'A'+str(i[0])
+                        it = i[0] + 1
+                        i.pop(0)
+                        i.append(it)
         result += [' '.join(x)]
     elif (len(x) == 1):
         if (not (x[0][0] == "'")):
@@ -49,14 +56,22 @@ def parse_prod(prod):
                         x[j] = cnf.split(" ")[0]
                         break
                 if not(found):
-                    cnfs.append('A'+str(i[0])+" -> '"+x[j][1:-1]+"'")
-                    x[j] = 'A'+str(i[0])
-                    it = i[0] + 1
-                    i.pop(0)
-                    i.append(it)
+                    if (x[j][1:-1] == ""):
+                        cnfs.append('A'+str(i[0])+" -> ' "+x[j][1:-1]+"'")
+                        x[j] = 'A'+str(i[0])
+                        it = i[0] + 1
+                        i.pop(0)
+                        i.append(it)
+                    else :
+                        cnfs.append('A'+str(i[0])+" -> '"+x[j][1:-1]+"'")
+                        x[j] = 'A'+str(i[0])
+                        it = i[0] + 1
+                        i.pop(0)
+                        i.append(it)
         result += [' '.join(eliminate_variables(x))]
     return result
 
+#eliminate more than 2 variables
 def eliminate_variables(prod):
     if (len(prod) > 2):
         found = False
@@ -101,9 +116,9 @@ def remove_epsilon2(symbol, x, prods2):
     return prods2
 
 def remove_epsilon(cfg):
-    desc = cfg.split("->")
-    symbol = desc[0].replace(' ','')
-    prods = list(map(lambda x: x.replace('\n', '').replace('\r',''), desc[1].split("|")))
+    cfglist = cfg.split("->")
+    symbol = cfglist[0].replace(' ','')
+    prods = list(map(lambda x: x.replace('\n', '').replace('\r',''), cfglist[1].split("|")))
     for j in range(len(prods)):
         if ('EPSILON' in prods[j]):
             break
