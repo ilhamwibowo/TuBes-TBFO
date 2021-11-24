@@ -2,12 +2,7 @@ import os
 import sys
 
 def create_cell(first, second):
-    """
-    creates set of string from concatenation of each character in first
-    to each character in second
-    first: first set of characters
-    second: second set of characters
-    """
+
     res = set()
     if first == set() or second == set():
         return set()
@@ -18,10 +13,7 @@ def create_cell(first, second):
 
 
 def read_grammar(filename):
-    """
-    reads the rules of a context free grammar from a text file
-    return two lists. v_rules lead to variables and t_rules lead to terminals.
-    """
+
     filename = os.path.join(os.curdir, filename)
     with open(filename) as grammar:
         rules = grammar.readlines()
@@ -52,6 +44,7 @@ def read_grammar(filename):
 
 
 def read_input(filename):
+
     all_lines = list()
     res = list()
     file = ''.join(removecomment(open(filename, "r").read()))
@@ -66,15 +59,11 @@ def read_input(filename):
         for i in range (len(res)):
             if (res[i] != ''):
                 all_lines.append(res[i])
-    
-    """
-    print('\nALL_LINES\n')
-    print(all_lines)
-    print('\n')
-    """
+
     return all_lines
 
 def removecomment(sentence):
+
     temp = sentence.split("\n")
     idxpetik = []
     for i in range(len(temp)):
@@ -92,11 +81,6 @@ def removecomment(sentence):
     return '\n'.join(temp)
 
 def cyk_alg(varies, terms, inp):
-    """
-    varies: rules related to variables
-    terms: rules related to terminals
-    inp: input string
-    """
 
     length = len(inp)
     var0 = [va[0] for va in varies]
@@ -126,17 +110,6 @@ def cyk_alg(varies, terms, inp):
 
 
 def show_result(tab, inp):
-    # for c in inp:
-    #     print("\t{}".format(c), end="\t")
-    # print()
-    # for i in range(len(inp)):
-    #     print(i+1, end="")
-    #     for c in tab[i]:
-    #         if c == set():
-    #             print("\t{}".format("_"), end="\t")
-    #         else:
-    #             print("\t{}".format(c), end=" ")
-    #     print()
 
     if len(tab[len(inp)-1][0]) != 0:
         return False
