@@ -12,8 +12,7 @@ BOOL_OPS -> 'a' 'n' 'd' | 'o' 'r'
 UNARY_OPS -> 'n' 'o' 't'
 
 ALPHANUM -> ALPHABET | NUMBER | OTHER | ALPHANUM ALPHANUM
-ALPHABET -> 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'
-ALPHABET -> 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
+ALPHABET -> 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
 OTHER -> '!' | '#' | '$' | '%' | '&' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?' | '@' | '[' | '\' | ']' | '^' | '_' | '`' | '{' | '|' | '}' | '~'
 NUMBER -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER
 STRING -> '"' ALPHANUM '"' | ''' ALPHANUM ''' | ALPHANUM '+' ALPHANUM
@@ -29,7 +28,7 @@ SPACE -> ' ' | SPACE SPACE
 
 IF -> 'i' 'f' SPACE CONDITION | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE
 ELIF -> 'e' 'l' 'i' 'f' SPACE CONDITION | ELIF ELIF | ELIF ELSE
-ELSE -> 'e' 'l' 's' 'e' ':' 'S'
+ELSE -> 'e' 'l' 's' 'e' ':' S
 CONDITION -> '(' BOOL ')' ':' S | BOOL ':' S
 RETURN -> 'r' 'e' 't' 'u' 'r' 'n' SPACE BOOL | 'r' 'e' 't' 'u' 'r' 'n' SPACE VAL
 

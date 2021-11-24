@@ -1,24 +1,4 @@
 import os
-import tokenize
-
-def convert_to_token(filename):
-    with tokenize.open(filename) as f:
-        tokens = tokenize.generate_tokens(f.readline)
-        all_lines = list()
-        res = list()
-        for token in tokens:
-            if (token.type == 4):
-                if (res != list()):
-                    all_lines.append(res)
-                    res = list()
-            if (token.type != 3 and token.type != 4 and token.type != 5 and token.type !=6 and token.type != 60 and token.type != 61):
-                res.append(token.string)
-            # print(token)
-        print("\nALL_LINES\n")
-        print(all_lines)
-        print('\n')
-    return all_lines
-
 
 def create_cell(first, second):
     """
@@ -71,39 +51,44 @@ def read_grammar(filename):
 
 
 def read_input(filename):
-    """
-    reads the inputs from a text file
-    :param filename: name of the text file in current directory
-    :return: list of inputs
-    """
-    # Read each word
-    filename = os.path.join(os.curdir, filename)
+    all_lines = list()
     res = list()
-    all_lines = list()
-    with open(filename) as inp:
-        inputs = inp.readlines()
-        for i in inputs:
+    file = ''.join(removecomment(open(filename, "r").read()))
+    file1 = open("temp","w"); file1.write(file); file1.close()
+    with open('temp', "r") as file:
+        for line in file.readlines():
+        
+            # remove \n
+            temp = " ".join(line[:-1].split())
+            if (not(temp.startswith("#"))):
+                res.append(temp)
+        for i in range (len(res)):
+            if (res[i] != ''):
+                all_lines.append(res[i])
     
-            # remove \n
-            res.append(i[:-1])
-        for i in range(len(res)):
-            all_lines.append(res[i].split())
-    '''
-    ** Read each character **
-    filename = os.path.join(os.curdir, filename)
-    all_lines = list()
-    with open(filename) as inp:
-        inputs = inp.readlines()
-        for i in inputs:
-
-            # remove \n
-            all_lines.append(i[:-1])
-    '''
-    print('ALL_LINES\n')
+    """
+    print('\nALL_LINES\n')
     print(all_lines)
     print('\n')
+    """
     return all_lines
 
+def removecomment(sentence):
+    temp = sentence.split("\n")
+    idxpetik = []
+    for i in range(len(temp)):
+        if "'''" in temp[i]:
+            idxpetik.append(i)
+    i = 0
+    while (i < len(idxpetik)):
+        try:
+            for j in range(idxpetik[i],idxpetik[i+1]+1):
+                temp[j] = ""
+        except:
+            for j in range(idxpetik[i],len(temp)):
+                temp[j] = "^%"
+        i += 2
+    return '\n'.join(temp)
 
 def cyk_alg(varies, terms, inp):
     """
@@ -122,7 +107,8 @@ def cyk_alg(varies, terms, inp):
     # Fill in the first row
     for i in range(length):
         for te in terms:
-            if inp[i] == te[1]:
+            tmp = len(te[1])
+            if inp[i] == te[1][1:(tmp-1)]:
                 table[0][i].add(te[0])
 
     # Fill in the remaining element
@@ -160,8 +146,7 @@ def show_result(tab, inp):
 if __name__ == '__main__':
     grammar = input("Masukkan file grammar: ")
     inputan = input("Masukkan file input: ")
-    #lines = convert_to_token(inputan)
     v, t = read_grammar(grammar)
-    for lines in convert_to_token(inputan):
+    for lines in read_input(inputan):
         ta = cyk_alg(v, t, lines)
         show_result(ta, lines)
