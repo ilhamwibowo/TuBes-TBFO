@@ -8,21 +8,21 @@ def parse_prod(prod):
     if (len(x) == 2):
         for j in range(len(x)):
             found = False
-            if (x[j][0].islower()):
+            if (x[j][0] == "'"):
                 for cnf in cnfs:
                     if (x[j] == cnf.split(" -> ")[1]):
                         found = True
                         x[j] = cnf.split(" ")[0]
                         break
                 if not(found):
-                    cnfs.append('A'+str(i[0])+" -> "+x[j])
+                    cnfs.append('A'+str(i[0])+" -> '"+x[j][1:-1]+"'")
                     x[j] = 'A'+str(i[0])
                     it = i[0] + 1
                     i.pop(0)
                     i.append(it)
         result += [' '.join(x)]
     elif (len(x) == 1):
-        if (not (x[0][0].islower())):
+        if (not (x[0][0] == "'")):
             for j in range(len(cfgs)):
                 if (cfgs[j].find(x[0]) == 0):
                     break
@@ -36,14 +36,14 @@ def parse_prod(prod):
     else:
         for j in range(len(x)):
             found = False
-            if (x[j][0].islower()):
+            if (x[j][0] == "'"):
                 for cnf in cnfs:
                     if (x[j] == cnf.split(" -> ")[1]):
                         found = True
                         x[j] = cnf.split(" ")[0]
                         break
                 if not(found):
-                    cnfs.append('A'+str(i[0])+" -> "+x[j])
+                    cnfs.append('A'+str(i[0])+" -> '"+x[j][1:-1]+"'")
                     x[j] = 'A'+str(i[0])
                     it = i[0] + 1
                     i.pop(0)
@@ -183,7 +183,7 @@ def convertCFGtoCNF(filename):
         remove_null(cfg)
         cnfs.append(parse(cfg))
     cnfs = list(map(lambda x: x+ '\n', cnfs))
-    open('cnf','w').writelines(cnfs)
+    open('cnf.txt','w').writelines(cnfs)
 
 
 filename = input()
