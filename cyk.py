@@ -150,7 +150,7 @@ if __name__ == '__main__':
     inputlines = read_input(inputan)
     i = 1
     for lines in inputlines:
-        lines = lines.replace(" ","")
+        lines = lines.replace(" ","~")
         ta = cyk_alg(v, t, lines)
         show_result(ta, lines,i)
         i += 1
