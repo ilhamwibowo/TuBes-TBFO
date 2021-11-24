@@ -144,13 +144,13 @@ def show_result(tab, inp,i):
 
 
 if __name__ == '__main__':
-    grammar = input("Masukkan file grammar: ")
-    inputan = input("Masukkan file input: ")
+    grammar = "cnf.txt"
+    inputan = "test.py"
     v, t = read_grammar(grammar)
     inputlines = read_input(inputan)
     i = 1
     for lines in inputlines:
-        lines = lines.replace(" ","~")
+        lines = lines.replace(" ","")
         ta = cyk_alg(v, t, lines)
         show_result(ta, lines,i)
         i += 1

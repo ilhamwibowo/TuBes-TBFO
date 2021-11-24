@@ -1,249 +1,198 @@
 S0 -> S
-S -> VARIABLE A0 | VARIABLE A3 | A4 A7 | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE | A8 A15 | A5 A26 | A27 A34 | A35 A41 | A35 A46 | DEF RETURN | A47 A53 | A4 A65 | A4 A70 | A5 A76 | A77 A82
+S -> VARIABLE A0 | A1 A3 | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE | A4 A11 | A2 A20 | A21 A28 | A29 A33 | DEF RETURN | A34 A40 | A1 A49 | A1 A54 | A2 A58 | A59 A64
 A0 -> VARIABLE_ASSIGN VARIABLE_VALUE
-A1 -> SPACE VARIABLE_VALUE
-A2 -> VARIABLE_ASSIGN A1
-A3 -> SPACE A2
-A4 -> 'i'
-A5 -> 'f'
-A6 -> SPACE CONDITION
-A7 -> A5 A6
-A8 -> 'p'
-A9 -> 'r'
-A10 -> 'n'
-A11 -> 't'
-A12 -> A11 CONTENT_IN_BRACKET
-A13 -> A10 A12
-A14 -> A4 A13
-A15 -> A9 A14
-A16 -> 'o'
-A17 -> ':'
+A1 -> 'i'
+A2 -> 'f'
+A3 -> A2 CONDITION
+A4 -> 'p'
+A5 -> 'r'
+A6 -> 'n'
+A7 -> 't'
+A8 -> A7 CONTENT_IN_BRACKET
+A9 -> A6 A8
+A10 -> A1 A9
+A11 -> A5 A10
+A12 -> 'o'
+A13 -> ':'
+A14 -> A13 S
+A15 -> VARIABLE A14
+A16 -> A6 A15
+A17 -> A1 A16
 A18 -> VARIABLE A17
-A19 -> SPACE A18
-A20 -> A10 A19
-A21 -> A4 A20
-A22 -> SPACE A21
-A23 -> VARIABLE A22
-A24 -> SPACE A23
-A25 -> A9 A24
-A26 -> A16 A25
-A27 -> 'w'
-A28 -> 'h'
-A29 -> 'l'
-A30 -> 'e'
-A31 -> A30 A6
-A32 -> A29 A31
-A33 -> A4 A32
-A34 -> A28 A33
-A35 -> 'd'
-A36 -> A17 S
-A37 -> CONTENT_IN_BRACKET A36
-A38 -> VARIABLE A37
-A39 -> SPACE A38
-A40 -> A5 A39
-A41 -> A30 A40
-A42 -> CONTENT_IN_BRACKET A17
-A43 -> VARIABLE A42
-A44 -> SPACE A43
-A45 -> A5 A44
-A46 -> A30 A45
-A47 -> 'c'
-A48 -> 'a'
-A49 -> 's'
-A50 -> A49 A19
-A51 -> A49 A50
-A52 -> A48 A51
-A53 -> A29 A52
-A54 -> 'm'
-A55 -> SPACE VARIABLE
-A56 -> A49 A55
-A57 -> A48 A56
-A58 -> SPACE A57
-A59 -> VARIABLE A58
-A60 -> SPACE A59
-A61 -> A11 A60
-A62 -> A9 A61
-A63 -> A16 A62
-A64 -> A8 A63
-A65 -> A54 A64
-A66 -> A11 A55
-A67 -> A9 A66
-A68 -> A16 A67
-A69 -> A8 A68
-A70 -> A54 A69
-A71 -> SPACE IMPORT
-A72 -> VARIABLE A71
-A73 -> SPACE A72
-A74 -> A54 A73
-A75 -> A16 A74
-A76 -> A9 A75
-A77 -> '"'
-A78 -> A77 A77
-A79 -> A77 A78
-A80 -> TATAKAE A79
-A81 -> A77 A80
-A82 -> A77 A81
-A83 -> '+'
-A84 -> '='
-A85 -> '-'
-A86 -> '*'
-A87 -> '/'
-VARIABLE_ASSIGN -> '=' | A83 A84 | A85 A84 | A86 A84 | A87 A84
-A88 -> VARIABLE_VALUE )
-A89 -> 'T'
-A90 -> 'u'
-A91 -> A90 A30
-A92 -> A9 A91
-A93 -> 'F'
-A94 -> A49 A30
-A95 -> A29 A94
-A96 -> A48 A95
-A97 -> SPACE BOOL
-A98 -> BOOL_OPS A97
-A99 -> SPACE A98
-A100 -> A49 A1
-A101 -> A4 A100
-A102 -> SPACE A101
-A103 -> RELATION VARIABLE_VALUE
-A104 -> RELATION A1
-A105 -> SPACE A104
-A106 -> TATAKAE A77
-A107 -> '''
-A108 -> TATAKAE A107
-A109 -> SPACE )
-A110 -> VARIABLE_VALUE A109
-A111 -> SPACE A110
-A112 -> ARITHMETIC_OPS VARIABLE_VALUE
-A113 -> ARITHMETIC_OPS A1
-A114 -> SPACE A113
-A115 -> A90 A12
-A116 -> A8 A115
-A117 -> A10 A116
-A118 -> '('
-A119 -> ')'
-A120 -> INPUT A119
-A121 -> A118 A120
-A122 -> A49 VARIABLE
-A123 -> A48 A122
-A124 -> CONTENT_IN_BRACKET A123
-A125 -> A10 A124
-A126 -> A30 A125
-A127 -> A8 A126
-A128 -> A16 A127
-A129 -> SPACE A128
-A130 -> A28 A129
-A131 -> A11 A130
-A132 -> A4 A131
-A133 -> A10 CONTENT_IN_BRACKET
-A134 -> A30 A133
-A135 -> SPACE CONTENT_IN_BRACKET
-A136 -> A10 A135
-A137 -> A30 A136
-A138 -> A10 A30
-A139 -> A16 A138
-VARIABLE_VALUE -> '=' | A83 A84 | A85 A84 | A86 A84 | A87 A84 | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER | ( A88 | A89 A92 | A93 A96 | BOOL A99 | UNARY_OPS A97 | VARIABLE_VALUE A102 | VARIABLE_VALUE A103 | VARIABLE_VALUE A105 | A77 A106 | A107 A108 | ( A111 | VARIABLE_VALUE A112 | VARIABLE_VALUE A114 | A4 A117 | TYPE A121 | A27 A132 | A29 A134 | A29 A137 | A10 A139
-A140 -> VARIABLE NUMBER
-VARIABLE -> ALPHABET A140 | ALPHABET VARIABLE | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' | '_'
-VAL -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER | ( A88 | A89 A92 | A93 A96 | BOOL A99 | UNARY_OPS A97 | VARIABLE_VALUE A102 | VARIABLE_VALUE A103 | VARIABLE_VALUE A105 | A77 A106 | A107 A108 | ( A111
-ARITHMETIC_OPS -> '+' | '-' | '*' | '/' | '%' | A86 A86 | A87 A87
-A141 -> '!'
-A142 -> '<'
-A143 -> '>'
-RELATION -> '>' | '<' | A84 A84 | A141 A84 | A142 A84 | A143 A84
-BOOL -> A89 A92 | A93 A96 | BOOL A99 | UNARY_OPS A97 | VARIABLE_VALUE A102 | VARIABLE_VALUE A103 | VARIABLE_VALUE A105
-A144 -> A10 A35
-BOOL_OPS -> A48 A144 | A16 A9
-A145 -> A16 A11
-UNARY_OPS -> A10 A145
-ALPHANUM -> 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER | '!' | '#' | '$' | '%' | '&' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?' | '@' | '[' | '\' | ']' | '^' | '_' | '`' | '{' | ' | '}' | ALPHANUM ALPHANUM
+A19 -> A5 A18
+A20 -> A12 A19
+A21 -> 'w'
+A22 -> 'h'
+A23 -> 'l'
+A24 -> 'e'
+A25 -> A24 CONDITION
+A26 -> A23 A25
+A27 -> A1 A26
+A28 -> A22 A27
+A29 -> 'd'
+A30 -> CONTENT_IN_BRACKET A14
+A31 -> VARIABLE A30
+A32 -> A2 A31
+A33 -> A24 A32
+A34 -> 'c'
+A35 -> 'a'
+A36 -> 's'
+A37 -> A36 A15
+A38 -> A36 A37
+A39 -> A35 A38
+A40 -> A23 A39
+A41 -> 'm'
+A42 -> A36 VARIABLE
+A43 -> A35 A42
+A44 -> VARIABLE A43
+A45 -> A7 A44
+A46 -> A5 A45
+A47 -> A12 A46
+A48 -> A4 A47
+A49 -> A41 A48
+A50 -> A7 VARIABLE
+A51 -> A5 A50
+A52 -> A12 A51
+A53 -> A4 A52
+A54 -> A41 A53
+A55 -> VARIABLE IMPORT
+A56 -> A41 A55
+A57 -> A12 A56
+A58 -> A5 A57
+A59 -> '"'
+A60 -> A59 A59
+A61 -> A59 A60
+A62 -> ALPHANUM A61
+A63 -> A59 A62
+A64 -> A59 A63
+A65 -> '+'
+A66 -> '='
+A67 -> '-'
+A68 -> '*'
+A69 -> '/'
+VARIABLE_ASSIGN -> '=' | A65 A66 | A67 A66 | A68 A66 | A69 A66
+A70 -> VARIABLE_VALUE )
+A71 -> 'T'
+A72 -> 'u'
+A73 -> A72 A24
+A74 -> A5 A73
+A75 -> 'F'
+A76 -> A36 A24
+A77 -> A23 A76
+A78 -> A35 A77
+A79 -> BOOL_OPS BOOL
+A80 -> A36 VARIABLE_VALUE
+A81 -> A1 A80
+A82 -> RELATION VARIABLE_VALUE
+A83 -> ALPHANUM A59
+A84 -> '''
+A85 -> ALPHANUM A84
+A86 -> A65 ALPHANUM
+A87 -> ARITHMETIC_OPS VARIABLE_VALUE
+A88 -> A72 A8
+A89 -> A4 A88
+A90 -> A6 A89
+A91 -> '('
+A92 -> ')'
+A93 -> INPUT A92
+A94 -> A91 A93
+A95 -> CONTENT_IN_BRACKET A43
+A96 -> A6 A95
+A97 -> A24 A96
+A98 -> A4 A97
+A99 -> A12 A98
+A100 -> A22 A99
+A101 -> A7 A100
+A102 -> A1 A101
+A103 -> A6 CONTENT_IN_BRACKET
+A104 -> A24 A103
+A105 -> A6 A24
+A106 -> A12 A105
+VARIABLE_VALUE -> '=' | A65 A66 | A67 A66 | A68 A66 | A69 A66 | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER | ( A70 | A71 A74 | A75 A78 | BOOL A79 | UNARY_OPS BOOL | VARIABLE_VALUE A81 | VARIABLE_VALUE A82 | A59 A83 | A84 A85 | ALPHANUM A86 | VARIABLE_VALUE A87 | A1 A90 | TYPE A94 | A21 A102 | A23 A104 | A6 A106
+A107 -> VARIABLE NUMBER
+VARIABLE -> ALPHABET A107 | ALPHABET VARIABLE | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' | '_'
+VAL -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER | ( A70 | A71 A74 | A75 A78 | BOOL A79 | UNARY_OPS BOOL | VARIABLE_VALUE A81 | VARIABLE_VALUE A82 | A59 A83 | A84 A85 | ALPHANUM A86
+ARITHMETIC_OPS -> '+' | '-' | '*' | '/' | '%' | A68 A68 | A69 A69
+A108 -> '!'
+A109 -> '<'
+A110 -> '>'
+RELATION -> '>' | '<' | A66 A66 | A108 A66 | A109 A66 | A110 A66
+BOOL -> A71 A74 | A75 A78 | BOOL A79 | UNARY_OPS BOOL | VARIABLE_VALUE A81 | VARIABLE_VALUE A82
+A111 -> A6 A29
+BOOL_OPS -> A35 A111 | A12 A5
+A112 -> A12 A7
+UNARY_OPS -> A6 A112
+ALPHANUM -> 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER | '!' | '#' | '$' | '%' | '&' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?' | '@' | '[' | '\' | ']' | '^' | '_' | '`' | '{' | ' | '}' | '~' | ALPHANUM ALPHANUM
 ALPHABET -> 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
-OTHER -> '!' | '#' | '$' | '%' | '&' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?' | '@' | '[' | '\' | ']' | '^' | '_' | '`' | '{' | ' | '}'
+OTHER -> '!' | '#' | '$' | '%' | '&' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?' | '@' | '[' | '\' | ']' | '^' | '_' | '`' | '{' | ' | '}' | '~'
 NUMBER -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER
-STRING -> A77 A106 | A107 A108
-TATAKAE -> TATAKAE TATAKAE | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER | '!' | '#' | '$' | '%' | '&' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?' | '@' | '[' | '\' | ']' | '^' | '_' | '`' | '{' | ' | '}' | ALPHANUM ALPHANUM | '~' | SPACE SPACE
-COMMENT -> A77 A82
-A146 -> VARIABLE_VALUE A119
-A147 -> STRING A119
-A148 -> SPACE A119
-A149 -> VARIABLE_VALUE A148
-A150 -> SPACE A149
-A151 -> STRING A148
-A152 -> SPACE A151
-CONTENT_IN_BRACKET -> A118 A146 | A118 A119 | A118 A147 | A118 A150 | A118 A148 | A118 A152
-PRINT -> A8 A15
-A153 -> A10 A11
-A154 -> A48 A11
-A155 -> A16 A154
-A156 -> A29 A155
-A157 -> A11 A9
-A158 -> 'b'
-A159 -> A29 A30
-A160 -> A158 A159
-A161 -> A90 A160
-A162 -> A16 A161
-TYPE -> A4 A153 | A5 A156 | A49 A157 | A35 A162
-INPUT -> A4 A117 | TYPE A121
-SPACE -> '~' | SPACE SPACE
-IF -> A4 A7 | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE
-A163 -> A4 A7
-A164 -> A29 A163
-ELIF -> A30 A164 | ELIF ELIF | ELIF ELSE
-A165 -> A30 A17
-A166 -> A49 A165
-A167 -> A29 A166
-A168 -> SPACE A17
-A169 -> A30 A168
-A170 -> A49 A169
-A171 -> A29 A170
-ELSE -> A30 A167 | A30 A171
-A172 -> A119 A17
-A173 -> BOOL A172
-A174 -> A119 A168
-A175 -> BOOL A174
-A176 -> SPACE A174
-A177 -> BOOL A176
-A178 -> SPACE A177
-CONDITION -> A118 A173 | A118 A175 | BOOL A17 | A118 A178 | BOOL A168
-A179 -> A10 A97
-A180 -> A9 A179
-A181 -> A90 A180
-A182 -> A11 A181
-A183 -> A30 A182
-A184 -> SPACE VAL
-A185 -> A10 A184
-A186 -> A9 A185
-A187 -> A90 A186
-A188 -> A11 A187
-A189 -> A30 A188
-RETURN -> A9 A183 | A9 A189
-DEF -> A35 A41 | A35 A46 | DEF RETURN
-A190 -> VARIABLE CONTENT_IN_BRACKET
-A191 -> SPACE A190
-A192 -> A30 A191
-A193 -> A49 A192
-A194 -> A4 A193
-A195 -> A48 A194
-RAISE -> A9 A195
-A196 -> 'k'
-A197 -> A48 A196
-A198 -> A30 A197
-A199 -> A9 A198
-BREAK -> A158 A199
-A200 -> A49 A49
-A201 -> A48 A200
-PASS -> A8 A201
-NONE -> A10 A139
-LOOP -> A5 A26 | A27 A34
-WHILE -> A27 A34
-FOR -> A5 A26
-A202 -> A10 A91
-A203 -> A4 A202
-A204 -> A11 A203
-A205 -> A10 A204
-A206 -> A16 A205
-CONTINUE -> A47 A206
-CLASS -> A47 A53
-IMPORT -> A4 A65 | A4 A70
-FROM_CONDITION -> A5 A76
-FILE_OPS -> A27 A132
-LEN -> A29 A134 | A29 A137
+STRING -> A59 A83 | A84 A85 | ALPHANUM A86
+COMMENT -> A59 A64
+A113 -> VARIABLE_VALUE A92
+A114 -> STRING A92
+CONTENT_IN_BRACKET -> A91 A113 | A91 A92 | A91 A114
+PRINT -> A4 A11
+A115 -> A6 A7
+A116 -> A35 A7
+A117 -> A12 A116
+A118 -> A23 A117
+A119 -> A7 A5
+A120 -> 'b'
+A121 -> A23 A24
+A122 -> A120 A121
+A123 -> A72 A122
+A124 -> A12 A123
+TYPE -> A1 A115 | A2 A118 | A36 A119 | A29 A124
+INPUT -> A1 A90 | TYPE A94
+IF -> A1 A3 | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE
+A125 -> A1 A3
+A126 -> A23 A125
+ELIF -> A24 A126 | ELIF ELIF | ELIF ELSE
+A127 -> A24 A13
+A128 -> A36 A127
+A129 -> A23 A128
+ELSE -> A24 A129
+A130 -> A92 A13
+A131 -> BOOL A130
+CONDITION -> A91 A131 | BOOL A13
+A132 -> A6 BOOL
+A133 -> A5 A132
+A134 -> A72 A133
+A135 -> A7 A134
+A136 -> A24 A135
+A137 -> A6 VAL
+A138 -> A5 A137
+A139 -> A72 A138
+A140 -> A7 A139
+A141 -> A24 A140
+RETURN -> A5 A136 | A5 A141
+DEF -> A29 A33 | DEF RETURN
+A142 -> VARIABLE CONTENT_IN_BRACKET
+A143 -> A24 A142
+A144 -> A36 A143
+A145 -> A1 A144
+A146 -> A35 A145
+RAISE -> A5 A146
+A147 -> 'k'
+A148 -> A35 A147
+A149 -> A24 A148
+A150 -> A5 A149
+BREAK -> A120 A150
+A151 -> A36 A36
+A152 -> A35 A151
+PASS -> A4 A152
+NONE -> A6 A106
+LOOP -> A2 A20 | A21 A28
+WHILE -> A21 A28
+FOR -> A2 A20
+A153 -> A6 A73
+A154 -> A1 A153
+A155 -> A7 A154
+A156 -> A6 A155
+A157 -> A12 A156
+CONTINUE -> A34 A157
+CLASS -> A34 A40
+IMPORT -> A1 A49 | A1 A54
+FROM_CONDITION -> A2 A58
+FILE_OPS -> A21 A102
+LEN -> A23 A104
