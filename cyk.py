@@ -139,10 +139,10 @@ def show_result(tab, inp):
     #     print()
 
     if len(tab[len(inp)-1][0]) != 0:
-        return True
+        return False
     else:
         print("Syntax Error!")
-        return False
+        return True
 
 
 if __name__ == '__main__':
@@ -154,9 +154,9 @@ if __name__ == '__main__':
     for lines in inputlines:
         lines = lines.replace(" ","")
         ta = cyk_alg(v, t, lines)
-        show_result(ta, lines)
+        error = show_result(ta, lines)
         if (error):
             break
 
-    if (not error):
-        print("Accepted!")
+if (not error):
+    print("Accepted!")
