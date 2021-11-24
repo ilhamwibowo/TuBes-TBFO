@@ -137,15 +137,15 @@ def show_result(tab, inp,i):
     #             print("\t{}".format(c), end=" ")
     #     print()
 
-    if len(tab[len(inp)-1][0]) != 0 and str(tab[len(inp)-1][0]).find("'S'") >= 1 :
+    if len(tab[len(inp)-1][0]) != 0:
         print("Accepted! Line " + str(i))
     else:
         print("Syntax Error at line " + str(i))
 
 
 if __name__ == '__main__':
-    grammar = "cnf.txt"
-    inputan = "test.py"
+    grammar = input("Masukkan file grammar: ")
+    inputan = input("Masukkan file input: ")
     v, t = read_grammar(grammar)
     inputlines = read_input(inputan)
     i = 1
