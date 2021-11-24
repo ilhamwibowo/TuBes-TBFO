@@ -1,0 +1,178 @@
+S -> H0 VARIABLE_VALUE | FROM | H1 CONDITION | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE | H2 S | H4 H3 | H5 S | H6 CONTENT_IN_BRACKET | H7 VARIABLE | H8 VARIABLE | H9 CONDITION | H10 S | DEF RETURN
+VARIABLE_ASSIGN -> '=' | H11 H12 | H13 H12 | H14 H12 | H15 H12
+VARIABLE_VALUE -> H16 VARIABLE_VALUE | H17 NUMBER | ALPHABET VARIABLE | '_' | H18 CONTENT_IN_BRACKET | H20 H19 | H21 CONTENT_IN_BRACKET | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' | H23 H22 | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER | H25 H24 | H26 H24 | H27 BOOL | UNARY_OPS BOOL | H28 VARIABLE_VALUE | H29 VARIABLE_VALUE | H30 VARIABLE | H31 H3 | H33 H32 | H34 ALPHANUM | H35 H24
+VARIABLE -> H17 NUMBER | ALPHABET VARIABLE | '_' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
+VAL -> H23 H22 | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER | H25 H24 | H26 H24 | H27 BOOL | UNARY_OPS BOOL | H28 VARIABLE_VALUE | H29 VARIABLE_VALUE | H31 H3 | H33 H32 | H34 ALPHANUM
+ARITHMETIC_OPS -> '+' | '-' | '*' | '/' | '%' | H14 H14 | H15 H15
+RELATION -> '>' | '<' | H12 H12 | H36 H12 | H37 H12 | H38 H12
+BOOL -> H25 H24 | H26 H24 | H27 BOOL | UNARY_OPS BOOL | H28 VARIABLE_VALUE | H29 VARIABLE_VALUE
+BOOL_OPS -> H40 H39 | H41 H42
+UNARY_OPS -> H44 H43
+ALPHANUM -> ALPHANUM ALPHANUM | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' | '!' | '#' | '$' | '%' | '&' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?' | '@' | '[' | '\' | ']' | '^' | '_' | '`' | '{' | '|' | '}' | '~' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER
+ALPHABET -> 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
+NUMBER -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | NUMBER NUMBER
+STRING -> H31 H3 | H33 H32 | H34 ALPHANUM
+CONTENT_IN_BRACKET -> H45 H19 | H46 H19 | H47 H19
+TYPE -> H48 H43 | H49 H43 | H50 H42 | H51 H24
+INPUT -> H18 CONTENT_IN_BRACKET | H20 H19
+IF -> H1 CONDITION | IF ELIF | IF ELSE | IF RAISE | IF BREAK | IF PASS | IF CONTINUE
+ELIF -> H52 CONDITION | ELIF ELIF | ELIF ELSE
+ELSE -> H54 H53
+CONDITION -> H55 H53 | BOOL H53
+RETURN -> H56 BOOL | H56 VAL
+DEF -> H10 S | DEF RETURN
+RAISE -> H57 CONTENT_IN_BRACKET
+BREAK -> H59 H58
+PASS -> H61 H60
+CONTINUE -> H62 H24
+H0 -> VARIABLE VARIABLE_ASSIGN
+H1 -> H64 H65
+H2 -> H66 H53
+H3 -> '"'
+H4 -> H67 H3
+H5 -> H68 H53
+H6 -> H69 H43
+H7 -> H70 H60
+H8 -> H71 H43
+H9 -> H72 H24
+H10 -> H73 H53
+H11 -> '+'
+H12 -> '='
+H13 -> '-'
+H14 -> '*'
+H15 -> '/'
+H16 -> VARIABLE_VALUE ARITHMETIC_OPS
+H17 -> ALPHABET VARIABLE
+H18 -> H74 H43
+H19 -> ')'
+H20 -> H75 INPUT
+H21 -> H77 H76
+H22 -> )
+H23 -> H78 VARIABLE_VALUE
+H24 -> 'e'
+H25 -> H80 H79
+H26 -> H81 H60
+H27 -> BOOL BOOL_OPS
+H28 -> H82 H60
+H29 -> VARIABLE_VALUE RELATION
+H30 -> H83 H60
+H31 -> H3 ALPHANUM
+H32 -> '''
+H33 -> H32 ALPHANUM
+H34 -> ALPHANUM H11
+H35 -> H44 H76
+H36 -> '!'
+H37 -> '<'
+H38 -> '>'
+H39 -> 'd'
+H40 -> H84 H76
+H41 -> 'o'
+H42 -> 'r'
+H43 -> 't'
+H44 -> H76 H41
+H45 -> H46 VARIABLE_VALUE
+H46 -> '('
+H47 -> H46 STRING
+H48 -> H64 H76
+H49 -> H85 H84
+H50 -> H60 H43
+H51 -> H87 H86
+H52 -> H88 H65
+H53 -> ':'
+H54 -> H89 H24
+H55 -> H90 H19
+H56 -> H91 H76
+H57 -> H92 VARIABLE
+H58 -> 'k'
+H59 -> H93 H84
+H60 -> 's'
+H61 -> H94 H60
+H62 -> H95 H79
+H64 -> 'i'
+H65 -> 'f'
+H66 -> H97 VARIABLE
+H67 -> H98 H3
+H68 -> H99 VARIABLE
+H69 -> H100 H76
+H70 -> H101 H84
+H71 -> H102 H42
+H72 -> H103 H86
+H73 -> H104 CONTENT_IN_BRACKET
+H74 -> H105 H79
+H75 -> TYPE H46
+H76 -> 'n'
+H77 -> H86 H24
+H78 -> (
+H79 -> 'u'
+H80 -> H106 H42
+H81 -> H107 H86
+H82 -> VARIABLE_VALUE H64
+H83 -> H108 H84
+H84 -> 'a'
+H85 -> H109 H41
+H86 -> 'l'
+H87 -> H111 H110
+H88 -> H112 H64
+H89 -> H112 H60
+H90 -> H46 BOOL
+H91 -> H113 H42
+H92 -> H114 H24
+H93 -> H115 H24
+H94 -> H116 H84
+H95 -> H117 H76
+H97 -> H120 H60
+H98 -> H121 ALPHANUM
+H99 -> H122 H76
+H100 -> H123 H64
+H101 -> H8 VARIABLE
+H102 -> H124 H41
+H103 -> H125 H64
+H104 -> H126 VARIABLE
+H105 -> H48 H116
+H106 -> 'T'
+H107 -> H127 H84
+H108 -> H128 CONTENT_IN_BRACKET
+H109 -> H65 H86
+H110 -> 'b'
+H111 -> H129 H79
+H112 -> H24 H86
+H113 -> H130 H79
+H114 -> H131 H60
+H115 -> H110 H42
+H116 -> 'p'
+H117 -> H132 H64
+H118 -> 'm'
+H120 -> H134 H60
+H121 -> H135 H3
+H122 -> H136 H64
+H123 -> H116 H42
+H124 -> H137 H116
+H125 -> H138 H139
+H126 -> H140 H65
+H127 -> 'F'
+H128 -> H141 H76
+H129 -> H39 H41
+H130 -> H142 H43
+H131 -> H143 H64
+H132 -> H144 H43
+H134 -> H145 H84
+H135 -> H3 H3
+H136 -> H146 VARIABLE
+H137 -> H64 H118
+H138 -> 'w'
+H139 -> 'h'
+H140 -> H39 H24
+H141 -> H147 H24
+H142 -> H42 H24
+H143 -> H42 H84
+H144 -> H148 H76
+H145 -> H149 H86
+H146 -> H150 H42
+H147 -> H151 H116
+H148 -> H149 H41
+H149 -> 'c'
+H150 -> H65 H41
+H151 -> H152 H41
+H152 -> H153 H139
+H153 -> H154 H43
+H154 -> H138 H64
