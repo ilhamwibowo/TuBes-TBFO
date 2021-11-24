@@ -1,6 +1,12 @@
 import sys
 sys.setrecursionlimit(10000)
 
+
+def insert_new_start(cfg):
+    string = "S0 -> S\n"
+    cfg.insert(0,string)
+    return cfg
+
 #parse cfg per production rules line
 def parse_prod(prod):
     x = list(filter(None,map(lambda x: x.replace(' ', '').replace('\n',''), prod.split(" "))))
@@ -183,6 +189,7 @@ def convertCFGtoCNF(filename):
         remove_null(cfg)
         cnfs.append(parse(cfg))
     cnfs = list(map(lambda x: x+ '\n', cnfs))
+    cnfs = insert_new_start(cnfs)
     open('cnf.txt','w').writelines(cnfs)
 
 
