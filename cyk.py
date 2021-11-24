@@ -137,7 +137,7 @@ def show_result(tab, inp,i):
     #             print("\t{}".format(c), end=" ")
     #     print()
 
-    if len(tab[len(inp)-1][0]) != 0:
+    if len(tab[len(inp)-1][0]) != 0 and str(tab[len(inp)-1][0]).find("'S'") >= 1 :
         print("Accepted! Line " + str(i))
     else:
         print("Syntax Error at line " + str(i))
