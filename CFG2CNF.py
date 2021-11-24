@@ -102,91 +102,6 @@ def parse(cfg):
         result += parse_prod(prod)
     return symbol + ' -> ' + ' | '.join(list(dict.fromkeys(result)))
 
-def remove_epsilon2(symbol, x, prods2):
-    if (x != []):
-        z = 0
-        a = x.copy()
-        while (z < len(a)):
-            if (a[z] == symbol):
-                a.pop(z)
-                prods2 = remove_epsilon2(symbol, a, prods2)
-                prods2.append(' '.join(a))
-                a = a[:z] + [symbol]  + a[z:] 
-            z += 1
-    return prods2
-
-def remove_epsilon(cfg):
-    cfglist = cfg.split("->")
-    symbol = cfglist[0].replace(' ','')
-    prods = list(map(lambda x: x.replace('\n', '').replace('\r',''), cfglist[1].split("|")))
-    for j in range(len(prods)):
-        if ('EPSILON' in prods[j]):
-            break
-    prods.pop(j)
-    cfgs[cfgs.index(cfg)] = symbol + ' -> ' + ' | '.join(list(dict.fromkeys(prods)))
-    for j in range(len(cfgs)):
-        if (symbol in cfgs[j]):
-            cfglist = cfgs[j].split("->")
-            symbol2 = cfglist[0].replace(' ','')
-            prods2 = list(map(lambda x: x.replace('\n', '').replace('\r',''), cfglist[1].split("|")))
-            for k in range(len(prods2)):
-                if (symbol in prods2[k]):
-                    x = list(filter(None,map(lambda x: x.replace(' ', '').replace('\n',''), prods2[k].split(" "))))
-                    if (len(x) > 1):
-                        z = 0
-                        a = x.copy()
-                        while (z < len(a)):
-                            if (a[z] == symbol):
-                                a.pop(z)
-                                prods2 = remove_epsilon2(symbol, a, prods2)
-                                prods2.append(' '.join(a))
-                                a = a[:z] + [symbol] + a[z:] 
-                            z += 1
-                        cfgs[j] = symbol2 + ' -> ' + ' | '.join(list(dict.fromkeys(prods2)))
-                    else:
-                        prods2.append('EPSILON')
-                        for z in range(len(prods2)):
-                            if (symbol in prods2[z] and len(list(filter(None,prods2[z].split(" ")))) == 1):
-                                break
-                        prods2.pop(z)
-                        cfgs[j] = symbol2 + ' -> ' + ' | '.join(list(dict.fromkeys(prods2)))
-                        remove_epsilon(cfgs[j])
-
-def searchSymbol(symbol, cfg, visited):
-    if (' '+symbol in cfg):
-        return True
-    elif (len(visited) == len(cfgs)):
-        return False
-    else:
-        cfglist = cfg.split("->")
-        symbol2 = cfglist[0].replace(' ','')
-        prods2 = list(map(lambda x: x.replace('\n', '').replace('\r','').split(' '), cfglist[1].split("|")))
-        variabelList = list(dict.fromkeys(filter(None, map(lambda x: x.replace(' ',''), [k for j in prods2 for k in j]))))
-        
-        for j in variabelList:
-            if (j.islower()):
-                variabelList.remove(j)
-        
-        found = False
-
-        for var in variabelList:
-            if (found):
-                break
-            if (var != symbol2):
-                for cfg2 in cfgs:
-                    if (cfg2.split("->")[0].replace(' ','').replace('\n','') == var and not(cfg2 in visited)):
-                        found = searchSymbol(symbol,cfg2,visited+[cfg2])
-                        break
-        return found
-
-def remove_null(cfg):
-    cfglist = cfg.split("->")
-    symbol = cfglist[0].replace(' ','')
-    found = searchSymbol(symbol, cfgs[0],[cfgs[0]])
-    if not(found):
-        j = cfgs.index(cfg)
-        cfgs.pop(j)
-
 def convertCFGtoCNF(filename):
     global cnfs
     global cfgs
@@ -194,14 +109,8 @@ def convertCFGtoCNF(filename):
     i =[0]
     cfgs = list(filter(None,map(lambda x: x.replace('\n','').replace('\r',''),open(filename,'r').readlines())))
     cnfs = []
-    for cfg in cfgs:
-        if ('EPSILON' in cfg):
-            remove_epsilon(cfg)
-
-    print(cfgs[0])
     cnfs = [parse(cfgs[0])] + cnfs
     for cfg in cfgs[1:]:
-        remove_null(cfg)
         cnfs.append(parse(cfg))
     cnfs = list(map(lambda x: x+ '\n', cnfs))
     cnfs = insert_new_start(cnfs)
