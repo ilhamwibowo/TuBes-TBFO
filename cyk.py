@@ -124,29 +124,32 @@ def cyk_alg(varies, terms, inp):
     return table
 
 
-def show_result(tab, inp):
-    for c in inp:
-        print("\t{}".format(c), end="\t")
-    print()
-    for i in range(len(inp)):
-        print(i+1, end="")
-        for c in tab[i]:
-            if c == set():
-                print("\t{}".format("_"), end="\t")
-            else:
-                print("\t{}".format(c), end=" ")
-        print()
+def show_result(tab, inp,i):
+    # for c in inp:
+    #     print("\t{}".format(c), end="\t")
+    # print()
+    # for i in range(len(inp)):
+    #     print(i+1, end="")
+    #     for c in tab[i]:
+    #         if c == set():
+    #             print("\t{}".format("_"), end="\t")
+    #         else:
+    #             print("\t{}".format(c), end=" ")
+    #     print()
 
     if len(tab[len(inp)-1][0]) != 0:
-        print("The input belongs to this context free grammar!")
+        print("Accepted! Line " + str(i))
     else:
-        print("The input does not belong to this context free grammar!")
+        print("Syntax Error at line " + str(i))
 
 
 if __name__ == '__main__':
     grammar = input("Masukkan file grammar: ")
     inputan = input("Masukkan file input: ")
     v, t = read_grammar(grammar)
-    for lines in read_input(inputan):
+    inputlines = read_input(inputan)
+    i = 1
+    for lines in inputlines:
         ta = cyk_alg(v, t, lines)
-        show_result(ta, lines)
+        show_result(ta, lines,i)
+        i += 1
