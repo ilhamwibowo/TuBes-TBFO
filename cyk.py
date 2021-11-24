@@ -1,4 +1,5 @@
 import os
+import sys
 
 def create_cell(first, second):
     """
@@ -124,7 +125,7 @@ def cyk_alg(varies, terms, inp):
     return table
 
 
-def show_result(tab, inp,i):
+def show_result(tab, inp):
     # for c in inp:
     #     print("\t{}".format(c), end="\t")
     # print()
@@ -138,19 +139,24 @@ def show_result(tab, inp,i):
     #     print()
 
     if len(tab[len(inp)-1][0]) != 0:
-        print("Accepted! Line " + str(i))
+        return True
     else:
-        print("Syntax Error at line " + str(i))
+        print("Syntax Error!")
+        return False
 
 
 if __name__ == '__main__':
-    grammar = input("Masukkan file grammar: ")
-    inputan = input("Masukkan file input: ")
+    error = False
+    grammar = "cnf.txt"
+    inputan = str(sys.argv[1])
     v, t = read_grammar(grammar)
     inputlines = read_input(inputan)
-    i = 1
     for lines in inputlines:
         lines = lines.replace(" ","")
         ta = cyk_alg(v, t, lines)
-        show_result(ta, lines,i)
-        i += 1
+        show_result(ta, lines)
+        if (error):
+            break
+
+    if (not error):
+        print("Accepted!")
